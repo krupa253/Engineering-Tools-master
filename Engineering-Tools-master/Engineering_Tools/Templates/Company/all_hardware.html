@@ -1,0 +1,72 @@
+{% extends 'Company/header_footer.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block 'content' %}
+
+
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3 class="title">All Products <span>/ Hardware</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+
+            </div><!-- Page Headings End -->
+
+            <div class="row">
+
+
+                <!--Export Data Table Start-->
+                <div class="col-12 mb-30">
+                    <div class="box">
+                        <div class="box-body">
+
+                            <table class="table table-bordered data-table data-table-export">
+                                <thead>
+                                    <tr>
+                                        <th>Model No.</th>
+                                        <th>Name</th>
+                                        <th>Manu. Date</th>
+                                        <th>Price</th>
+                                        <th>warranty</th>
+                                        <th>Replace <br> Time</th>
+                                        <th>Updated <br> Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for i in data %}
+                                    <tr>
+                                        <td> <a href="{% url 'Company:Hardware_details' i.p_model_no %}"> {{ i.p_model_no }} </a></td>
+                                        <td> {{ i.p_name }} </td>
+                                        <td> {{ i.p_manufacturing_date }} </td>
+                                        <td> {{ i.p_price }} </td>
+                                        <td> {{ i.P_warranty }} </td>
+                                        <td> {{ i.p_replace_time }} </td>
+                                        <td> {{ i.p_updated_date }} </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Export Data Table End-->
+
+
+            </div>
+
+        </div><!-- Content Body End -->
+
+
+
+{% endblock %}

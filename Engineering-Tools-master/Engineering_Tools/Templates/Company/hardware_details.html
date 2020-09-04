@@ -1,0 +1,342 @@
+{% extends 'Company/header_footer.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block 'content' %}
+
+
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+
+                <!-- Page Heading Start -->
+                <div class="col-md-8 col-sm-8 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3 class="title"> Details <span>/ Hardware</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+
+                  <!-- Page Heading Start -->
+                <div class="col-md-4 col-sm-4 col-lg-auto mb-20">
+                    <div class="row">
+
+                    <div class="col-md-6 col-sm-6 page-heading">
+                        <a style="width:100%; height:100%;" class="btn btn-primary" href="{% url 'Company:Edit_Hardware' data.id %}">Edit Product</a>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 page-heading">
+                        <form style="width:100%; height:100%;" action="{% url 'Company:Delete_Hardware' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="ID" value="{{ data.id }}">
+                            <button style="width:100%; height:100%;" class="btn btn-danger">Delete</button>
+                        </form>
+
+                    </div>
+                    </div>
+                </div><!-- Page Heading End] -->
+            </div><!-- Page Headings End -->
+
+            <div class="row">
+
+
+                <!--Export Data Table Start-->
+                <div class="col-12 mb-30">
+                    <div class="box">
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p style="color:white; font-size:25px;">Basic Information</p>
+                                    <hr>
+                                    <br>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+
+                                    <div class="col-md-3">
+                                        <span style="color:white"> Model No:</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ data.p_model_no }}
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <span style="color:white">Bio:</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ data.p_bio }}
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <span style="color:white">Price:</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ data.p_price }}
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <span style="color:white">Replace Time:</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ data.p_replace_time }}
+                                    </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="row">
+
+                                    <div class="col-md-3">
+                                        <span style="color:white"> Name:</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ data.p_name }}
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <span style="color:white">Manufacturing Date:</span>
+                                    </div>
+                                    <div class="col-md-8"><br>
+                                        {{ data.p_manufacturing_date }}
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <span style="color:white"> Warranty: </span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ data.P_warranty }}
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <span style="color:white"> Catagory: </span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ data.p_catagory }}
+                                    </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br>
+                                    <p style="color:white; font-size:25px;">Product Features</p>
+                                    <hr>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ol>
+                                        <li>
+                                            {{ data.p_feature_1 }}
+                                        </li>
+                                        <li>
+                                            {{ data.p_feature_2 }}
+                                        </li>
+
+                                        {% if data.p_feature_3 != "" %}
+                                            <li>
+                                                {{ data.p_feature_3 }}
+                                            </li>
+                                        {% endif %}
+
+                                        {% if data.p_feature_4 != "" %}
+                                            <li>
+                                                {{ data.p_feature_4 }}
+                                            </li>
+                                        {% endif %}
+
+                                        {% if data.p_feature_5 != "" %}
+                                            <li>
+                                                {{ data.p_feature_5 }}
+                                            </li>
+                                        {% endif %}
+
+                                        {% if data.p_feature_6 != "" %}
+                                            <li>
+                                                {{ data.p_feature_6 }}
+                                            </li>
+                                        {% endif %}
+
+                                    </ol>
+                                </div>
+                            </div>
+
+
+                             <div class="row">
+                                <div class="col-md-12">
+                                    <br>
+                                    <p style="color:white; font-size:25px;">Product Images</p>
+                                    <hr>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div style="width:200px; height:200px;" class="col-md-4">
+                                    <img style="width:100%; height:100%; border-radius:5px; box-shadow: 5px 5px 10px;" src="{{ MEDIA_URL }}{{ data.p_img_1.url }}">
+                                </div>
+
+                                <div style="width:200px; height:200px;" class="col-md-4">
+                                    <img style="width:100%; height:100%; border-radius:5px; box-shadow: 5px 5px 10px;" src="{{ MEDIA_URL }}{{ data.p_img_2.url }}">
+                                </div>
+
+                                {% if data.p_img_3 != "" %}
+                                <div style="width:200px; height:200px;" class="col-md-4">
+                                    <img style="width:100%; height:100%; border-radius:5px; box-shadow: 5px 5px 10px;" src="{{ MEDIA_URL }}{{ data.p_img_3.url }}">
+                                </div>
+                                {% endif %}
+
+                                <div class="col-md-12">
+                                    <br>
+                                </div>
+
+
+                                {% if data.p_img_4 != "" %}
+                                <div style="width:200px; height:200px;" class="col-md-4">
+                                    <img style="width:100%; height:100%; border-radius:5px; box-shadow: 5px 5px 10px;" src="{{ MEDIA_URL }}{{ data.p_img_4.url }}">
+                                </div>
+                                {% endif %}
+
+                                {% if data.p_img_5 != "" %}
+                                <div style="width:200px; height:200px;" class="col-md-4">
+                                    <img style="width:100%; height:100%; border-radius:5px; box-shadow: 5px 5px 10px;" src="{{ MEDIA_URL }}{{ data.p_img_5.url }}">
+                                </div>
+                                {% endif %}
+
+
+                                {% if data.p_img_6 != "" %}
+                                <div style="width:200px; height:200px;" class="col-md-4">
+                                    <img style="width:100%; height:100%; border-radius:5px; box-shadow: 5px 5px 10px;" src="{{ MEDIA_URL }}{{ data.p_img_6.url }}">
+                                </div>
+                                {% endif %}
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br>
+                                    <p style="color:white; font-size:25px;">Important Links</p>
+                                    <hr>
+                                </div>
+                            </div>
+
+                            <div class="row" style="text-align:center; color:white; font-size:20px; margin-top:-5%">
+
+                                {% if data.p_ppt != "" %}
+                                <div class="col-md-2" style="border:1px solid white; margin-left: 2%; margin-top:5%; border-radius: 8px;">
+                                <a target="_blank" href="{{ MEDIA_URL }}{{ data.p_ppt.url }}">
+                                    PPT
+                                </a>
+                                </div>
+                                {% endif %}
+
+                                {% if data.p_pdf != "" %}
+                                <div class="col-md-2" style="border:1px solid white; margin-left: 2%; margin-top:5%; border-radius: 8px;">
+                                    <a target="_blank" href="{{ MEDIA_URL }}{{ data.p_pdf.url }}">PDF</a>
+                                </div>
+                                {% endif %}
+
+                                {% if data.p_blog_link != "" %}
+                                <div class="col-md-2" style="border:1px solid white; margin-left: 2%; margin-top:5%; border-radius: 8px;">
+                                    <a target="_blank" href="{{ data.p_blog_link }}">BLOG</a>
+                                </div>
+                                {% endif %}
+
+                                {% if data.p_youtube_link != "" %}
+                                <div class="col-md-2" style="border:1px solid white; margin-left: 2%; margin-top:5%; border-radius: 8px;">
+                                    <a target="_blank" href="{{ data.p_youtube_link }}">YOUTUBE</a>
+                                </div>
+                                {% endif %}
+
+                                {% if data.p_software_link != "" %}
+                                <div class="col-md-2" style="border:1px solid white; margin-left: 2%; margin-top:5%; border-radius: 8px;">
+                                    <a target="_blank" href="{{ data.p_software_link }}">SOFTWARE</a>
+                                </div>
+                                {% endif %}
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br>
+                                    <p style="color:white; font-size:25px;">Updation Details</p>
+                                    <hr>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <span style="color:white"> Updated Date:</span>
+                                        </div>
+                                        <div class="col-md-8">
+                                            {{ data.p_updated_date }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <span style="color:white"> Created Date:</span>
+                                        </div>
+                                        <div class="col-md-8">
+                                            {{ data.p_creation_date }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Export Data Table End-->
+
+
+            </div>
+
+        </div><!-- Content Body End -->
+
+
+
+{% endblock %}

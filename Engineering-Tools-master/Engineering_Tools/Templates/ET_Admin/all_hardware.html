@@ -1,0 +1,76 @@
+{% extends 'ET_Admin/header_footer.html' %}
+{% load static %}
+{% load i18n %}
+
+	{% block 'content' %}
+
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+
+                <div class="content container-fluid">
+
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="page-title">Welcome Admin!</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item active">Dashboard</li>
+									<li class="breadcrumb-item active">Product</li>
+                                    <li class="breadcrumb-item active">Hardware</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					<div class="row">
+						<div class="col-md-12">
+
+							<!-- Recent Orders -->
+							<div class="card card-table">
+								<div class="card-header">
+									<h4 class="card-title"> All Hardware Product </h4>
+								</div>
+
+								<div class="card-body">
+									<div class="table-responsive">
+                                        <p>I need to update for only Hardware Product :)</p>
+										<table class="table table-hover table-center mb-0">
+											<thead>
+												<tr>
+													<th>Username</th>
+													<th>Email</th>
+													<th>Profile</th>
+                                                    <th>Joining Date</th>
+                                                    <th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for i in user %}
+
+												<tr>
+													<td> {{ i.username }}</td>
+													<td> <a href="mailto:{{ i.email }}">{{ i.email }}</a></td>
+                                                    <td> Profile </td>
+                                                    <td> {{ i.date_joined }} </td>
+                                                    <td> <button class="btn btn-danger">DELETE</button> </td>
+												</tr>
+
+											{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- /Recent Orders -->
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+
+        </div>
+		<!-- /Main Wrapper -->
+	{% endblock %}

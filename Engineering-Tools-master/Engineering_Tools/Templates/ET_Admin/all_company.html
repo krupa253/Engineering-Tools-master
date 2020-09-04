@@ -1,0 +1,79 @@
+{% extends 'ET_Admin/header_footer.html' %}
+{% load static %}
+{% load i18n %}
+
+	{% block 'content' %}
+
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+
+                <div class="content container-fluid">
+
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="page-title">Welcome Admin!</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item active">Dashboard</li>
+									<li class="breadcrumb-item active">Company</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					<div class="row">
+						<div class="col-md-12">
+
+							<!-- Recent Orders -->
+							<div class="card card-table">
+								<div class="card-header">
+									<h4 class="card-title"> All Company </h4>
+								</div>
+
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-hover table-center mb-0">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Email</th>
+													<th>Phone</th>
+                                                    <th>State</th>
+                                                    <th>Website/Linkedin</th>
+                                                    <th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for i in company %}
+
+												<tr>
+													<td> {{ i.c_name }}</td>
+													<td> {{ i.c_email }}</td>
+													<td> <a href="tel:{{ i.c_phone }}">{{ i.c_phone }}</a></td>
+                                                    <td> {{ i.c_state }}</td>
+                                                    <td> 
+                                                        <a href="{{ i.c_website }} " target="_blank"><img style="width:80px; height: 80px;" src="{% static 'website.png' %}"></a>
+                                                        <a href="{{ i.c_linkedin }}" target="_blank"><img style="width:80px; height: 80px;" src="{% static 'linkedin.png' %}"> </a>
+                                                    </td>
+                                                    <td> <button class="btn btn-danger">DELETE</button> </td>
+												</tr>
+
+											{% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- /Recent Orders -->
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+
+        </div>
+		<!-- /Main Wrapper -->
+	{% endblock %}

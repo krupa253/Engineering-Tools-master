@@ -1,0 +1,53 @@
+{% extends 'account/comman_for_accounts.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block 'common_for_account' %}
+
+        <div class="breadcrumb-area gray-bg-7">
+            <div class="container">
+                <div class="breadcrumb-content">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active"> Logout  </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="login-register-area pt-60 pb-65">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                        <div class="login-register-wrapper">
+                            <div class="login-register-tab-list nav">
+                                <a class="active" data-toggle="tab" href="#lg1">
+                                    <h4> Logout </h4>
+                                </a>
+                            </div>
+                            <div class="tab-content">
+                                <div id="lg1" class="tab-pane active">
+                                    <div class="login-form-container">
+                                        <div class="login-register-form">
+
+                                            <form method="post"  action="{% url 'account_logout' %}">
+                                                {% csrf_token %}
+                                                <div class="button-box">
+                                                    {% if redirect_field_value %}
+                                                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                                    {% endif %}
+                                                    <p style="color: black; font-size: 18px;"> Are You Sure You Want To <span style="color:red;">Logout</span> ? </p>
+                                                    <br>
+                                                    <button class="btn btn-primary" style="width: 100%; border-radius: 5px;" type="submit">Logout</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

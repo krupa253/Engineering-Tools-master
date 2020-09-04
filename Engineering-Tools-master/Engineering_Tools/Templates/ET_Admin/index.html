@@ -1,0 +1,86 @@
+{% extends 'ET_Admin/header_footer.html' %}
+{% load static %}
+{% load i18n %}
+
+	{% block 'content' %}
+
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+			
+                <div class="content container-fluid">
+					
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="page-title">Welcome Admin!</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item active">Dashboard</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					<div class="row">
+						<div class="col-md-12">
+	                            <!-- All User -->
+								<div class="card card-table">
+								<div class="card-header">
+									<h4 class="card-title"> All User </h4>
+								</div>
+
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-hover table-center mb-0">
+											<thead>
+												<tr>
+													<th>Email</th>
+													<th>Username</th>
+													<th>Admin</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- /All User -->
+<hr>
+
+					<hr>
+						<!--All Feedback -->
+							<div class="card card-table">
+								<div class="card-header">
+									<h4 class="card-title"> All Feedback </h4>
+								</div>
+
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-hover table-center mb-0">
+											<thead>
+												<tr>
+													<th>Email</th>
+													<th>Subject</th>
+													<th>Message</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						<!-- /All Feedback-->
+
+
+						</div>
+					</div>
+					
+				</div>			
+			</div>
+			<!-- /Page Wrapper -->
+		
+        </div>
+		<!-- /Main Wrapper -->
+	{% endblock %}

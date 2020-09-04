@@ -1,0 +1,174 @@
+{% extends 'User/header_footer.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block 'content' %}
+
+
+<div class="breadcrumb-area gray-bg-7">
+            <div class="container">
+                <div class="breadcrumb-content">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">My Account </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- my account start -->
+        <div class="checkout-area pb-45 pt-65">
+            <div class="container">
+                <div class="row">
+                    <div class="ml-auto mr-auto col-lg-9">
+                        <div class="checkout-wrapper">
+                            <div id="faq" class="panel-group">
+                                <div class="panel panel-default">
+                                    <div id="my-account-1" class="panel-collapse collapse show">
+                                        <div class="panel-body">
+                                            <div class="billing-information-wrapper">
+                                                <div class="account-info-wrapper">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h3>Your Personal Details</h3>
+                                                        </div>
+                                                        <div class="col-md-3">
+
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <p style="border-radius:5px; width:65%; height:65%; font-size:18px;" onclick="EditData()" class="btn btn-primary">Edit</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <form action="{% url 'User:Update_Account' %}" method="POST">
+                                                           {% csrf_token %}
+
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <div class="billing-info">
+                                                            <label>Username</label>
+                                                            <input type="text" value="{{ request.user.username }} " class="form-control" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <div class="billing-info">
+                                                            <label>Email</label>
+                                                            <input type="email" value="{{ request.user.email }}" readonly class="form-control" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <div class="billing-info">
+                                                            <label>Gender</label>
+
+                                                            <input type="text" id="gender" name="gender" value="{{ data.gender }}" readonly class="form-control">
+
+                                                            <select id="genderSelect" name="genderSelect" required class="form-control">
+                                                                    <option value="">-- Select --</option>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="billing-info">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label>Phone no</label>
+                                                                    <input class="form-control" id="phone" type="text" name="PhoneNumber" value="{{ data.phone }}" readonly>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>Pin Code</label>
+                                                                    <input id="pincode" readonly  type="text" name="pincode" value="{{ data.pincode }}" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <label>Address </label>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <textarea id="address" readonly class="form-control" style="color:black;" name="address"> {{ data.address_line }} </textarea>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label>City</label>
+                                                                    <input id="city" readonly type="text" name="city" class="form-control" value="{{ data.city }}">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>State</label>
+                                                                    <input id="state" readonly type="text" name="state" class="form-control" value="{{ data.state }}">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Country</label>
+                                                                    <input id="country" readonly type="text" name="country" class="form-control" value="{{ data.country }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                           <div class="row">
+                                                               <div class="col-md-12">
+                                                                   <br>
+                                                               </div>
+                                                               <div class="col-md-2">
+
+                                                               </div>
+                                                                <div class="col-md-4">
+                                                                    <input style="border-radius:5px" type="submit" class="btn btn-primary" value="SUBMIT">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <input style="border-radius:5px" type="reset" class="btn btn-danger" value="RESET">
+                                                                </div>
+
+                                                               <div class="col-md-2">
+
+                                                               </div>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script>
+   window.onload = function() {
+        Load();
+   }
+   function EditData(){
+            var gender = document.querySelector('#genderSelect');
+            gender.style.display = "inline";
+            var genderText = document.querySelector('#gender');
+            genderText.style.display = "None";
+            document.getElementById('phone').removeAttribute("readonly");
+            document.getElementById('pincode').removeAttribute("readonly");
+            document.getElementById('address').removeAttribute("readonly");
+            document.getElementById('city').removeAttribute("readonly");
+            document.getElementById('state').removeAttribute("readonly");
+            document.getElementById('country').removeAttribute("readonly");
+   }
+   function Load(){
+        if(document.getElementById('gender').value != "" ){
+            var gender = document.querySelector('#genderSelect');
+            gender.style.display = "None";
+        }
+        else{
+            var gender = document.querySelector('#gender');
+            gender.style.display = "None";
+            document.getElementById('phone').removeAttribute("readonly");
+            document.getElementById('pincode').removeAttribute("readonly");
+            document.getElementById('address').removeAttribute("readonly");
+            document.getElementById('city').removeAttribute("readonly");
+            document.getElementById('state').removeAttribute("readonly");
+            document.getElementById('country').removeAttribute("readonly");
+        }
+   }
+</script>
+
+{% endblock %}

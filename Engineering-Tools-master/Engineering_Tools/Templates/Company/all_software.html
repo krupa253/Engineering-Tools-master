@@ -1,0 +1,66 @@
+{% extends 'Company/header_footer.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block 'content' %}
+
+
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3 class="title">All Products <span>/ Software</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+
+            </div><!-- Page Headings End -->
+
+            <div class="row">
+
+
+                <!--Export Data Table Start-->
+                <div class="col-12 mb-30">
+                    <div class="box">
+                        <div class="box-body">
+
+                            <table class="table table-bordered data-table data-table-export">
+                                <thead>
+                                    <tr>
+                                        <th>Software Name</th>
+                                        <th>Website Link</th>
+                                        <th>Youtube Link</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for i in data %}
+
+                                <tr>
+                                    <td> <a href="{% url 'Company:Software_details' i.software_name %}"> {{ i.software_name }} </a> </td>
+                                    <td> <a href="{{ i.software_link }}" target="_blank"> {{ i.software_link }} </a> </td>
+                                    <td> <a href="{{ i.youtube_link }}" target="_blank"> {{ i.youtube_link }} </a> </td>
+                                </tr>
+
+                                {% endfor %}
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Export Data Table End-->
+
+
+            </div>
+
+        </div><!-- Content Body End -->
+
+
+
+{% endblock %}

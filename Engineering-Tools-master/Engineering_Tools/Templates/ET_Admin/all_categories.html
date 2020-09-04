@@ -1,0 +1,58 @@
+{% extends 'ET_Admin/header_footer.html' %}
+{% load static %}
+{% load i18n %}
+
+	{% block 'content' %}
+
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+
+                <div class="content container-fluid">
+
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="page-title">Welcome Admin!</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item active">Dashboard</li>
+									<li class="breadcrumb-item active">Categories</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					<div class="row">
+						<div class="col-md-12">
+							<ul>
+							        {% for i in category %}
+												<li style="font-size:25px;">
+													{{ i.catagory_name }}
+												</li>
+											{% endfor %}
+                                        </ul>
+
+						</div>
+
+						<div class="col-md-12">
+							<br>
+						</div>
+
+						<div class="col-md-12">
+							<br>
+						</div>
+
+						<div class="col-md-12">
+							<p style="color:black; font-size:20px;">If You Want To Add New Product Categories, <a href="mailto:sahilrajput6899@gmail.com?subject=Add New Product Category"><span>Please Contact Super Admin</span></a> ...</p>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+
+        </div>
+		<!-- /Main Wrapper -->
+	{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'ET_Admin/header_footer.html' %}
+{% load static %}
+{% load i18n %}
+
+	{% block 'content' %}
+
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+
+                <div class="content container-fluid">
+
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="page-title">Welcome Admin!</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item active">Dashboard</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					<div class="row">
+
+                        <div class="col-md-4">
+                        </div>
+
+						<div style="margin-top:5%; background-color:white; padding-top:6%; padding-bottom:6%;" class="col-md-4">
+                            <center>
+                                <form method="post" action="{% url 'Admin:Admin_logout_done' %}">
+                          {% csrf_token %}
+                            <p style="font-size:15px; margin-top:1%;"> Are You Sure, You Want To <span style="color:red" >Logout</span>  ?? </p>
+                          {% if redirect_field_value %}
+                          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                          {% endif %}
+                                <button class="btn btn-primary" style="border-radius: 5px; width:60%;">Log out</button>
+                        </form>
+
+                            </center>
+
+                    	</div>
+
+                        <div class="col-md-4">
+                        </div>
+
+					</div>
+
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+
+        </div>
+		<!-- /Main Wrapper -->
+	{% endblock %}

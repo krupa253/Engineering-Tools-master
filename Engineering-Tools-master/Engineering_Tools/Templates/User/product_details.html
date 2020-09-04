@@ -1,0 +1,270 @@
+{% extends 'User/header_footer.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block 'content' %}
+
+ <div class="breadcrumb-area gray-bg-7">
+            <div class="container">
+                <div class="breadcrumb-content">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Product Details Tab</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="product-details pt-65 pb-65">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="product-details-img">
+                            <div id="gallery" class="product-dec-slider-2">
+                                <a data-image="{{ MEDIA_ROOT }}{{ data.p_img_1.url }}" data-zoom-image="{{ MEDIA_ROOT }}{{ data.p_img_1.url }}">
+                                    <img src="{{ MEDIA_ROOT }}{{ data.p_img_1.url }}" alt="">
+                                </a>
+                                <a data-image="{{ MEDIA_ROOT }}{{ data.p_img_2.url }}" data-zoom-image="{{ MEDIA_ROOT }}{{ data.p_img_2.url }}">
+                                    <img src="{{ MEDIA_ROOT }}{{ data.p_img_2.url }}" alt="">
+                                </a>
+
+                                {% if data.p_img_3 != "" %}
+                                <a data-image="{{ MEDIA_ROOT }}{{ data.p_img_3.url }}" data-zoom-image="{{ MEDIA_ROOT }}{{ data.p_img_3.url }}">
+                                    <img src="{{ MEDIA_ROOT }}{{ data.p_img_3.url }}" alt="">
+                                </a>
+                                {% endif %}
+
+                                {% if data.p_img_4 != "" %}
+                                <a data-image="{{ MEDIA_ROOT }}{{ data.p_img_4.url }}" data-zoom-image="{{ MEDIA_ROOT }}{{ data.p_img_4.url }}">
+                                    <img src="{{ MEDIA_ROOT }}{{ data.p_img_4.url }}" alt="">
+                                </a>
+                                {% endif %}
+
+                                {% if data.p_img_5 != "" %}
+                                <a data-image="{{ MEDIA_ROOT }}{{ data.p_img_5.url }}" data-zoom-image="{{ MEDIA_ROOT }}{{ data.p_img_5.url }}">
+                                    <img src="{{ MEDIA_ROOT }}{{ data.p_img_5.url }}" alt="">
+                                </a>
+                                {% endif %}
+
+                                {% if data.p_img_6 != "" %}
+                                <a data-image="{{ MEDIA_ROOT }}{{ data.p_img_6.url }}" data-zoom-image="{{ MEDIA_ROOT }}{{ data.p_img_6.url }}">
+                                    <img src="{{ MEDIA_ROOT }}{{ data.p_img_6.url }}" alt="">
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="zoompro-wrap zoompro-2 pl-20">
+                                <div class="zoompro-border zoompro-span">
+                                    <img class="zoompro" src="{{ MEDIA_ROOT }}{{ data.p_img_1.url }}" data-zoom-image="{{ MEDIA_ROOT }}{{ data.p_img_1.url }}" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="product-details-content">
+                            <h4>{{ data.p_name }}</h4>
+                            <br>
+                            <h5>{{ data.p_model_no }}</h5>
+                            <br>
+                            <span>${{ data.p_price }}</span>
+                            <div class="in-stock">
+                                <p>Available: <span>In stock</span></p>
+                                <p>Manufacturing Date: <span>{{data.p_manufacturing_date}}</span></p>
+                                <p>Warranty: <span>{{data.P_warranty}}</span></p>
+                                <p>Replace Time: <span>{{data.p_replace_time}} Days</span></p>
+                                <br>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-6">
+
+                                        {% if inCart %}
+                                        <form method="POST" style="width:100%; height:100%;"  action="{% url 'Cart:Remove_From_Cart' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="productId" value="{{ data.id }}">
+                                            <button class="btn btn-danger"  style="height:100%; width:100%; border-radius:5px;">
+                                                Remove From Cart
+                                            </button>
+                                        </form>
+                                        {% else %}
+                                        <form method="POST" style="width:100%; height:100%;"  action="{% url 'Cart:Add_To_Cart' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="productId" value="{{ data.id }}">
+                                            <input type="hidden" name="productName" value="{{ data.p_name }}">
+                                            <input type="hidden" name="productPrice" value="{{ data.p_price }}">
+                                            <button class="btn btn-primary"  style="height:100%; width:100%; border-radius:5px;">
+                                                Add To Cart
+                                            </button>
+                                        </form>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        {% if inWishList %}
+                                            <form method="POST" style="width:100%; height:100%;" action="{% url 'Cart:Remove_From_WishList' %}">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="productId" value="{{ data.id }}">
+                                                <button class="btn" style="width:100%; height:100%; background-color:#EEF0F1; border-radius:5px;">
+                                                        <i class="fa fa-heart"></i>
+                                                </button>
+                                            </form>
+                                        {% else %}
+                                            <form method="POST" style="width:100%; height:100%;" action="{% url 'Cart:Add_To_WishList' %}">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="productId" value="{{ data.id }}">
+                                                <input type="hidden" name="productName" value="{{ data.p_name }}">
+                                                <input type="hidden" name="productPrice" value="{{ data.p_price }}">
+                                                <button class="btn" style="width:100%; height:100%; background-color:#EEF0F1; border-radius:5px;">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                            </div>
+                            <br>
+                            <div class="pro-dec-categories">
+                                <ul>
+                                    <li class="categories-title">Categories:</li>
+                                    <li>{{ categoryName }}</li>
+                                </ul>
+                            </div>
+                            <div class="pro-dec-social">
+                                <ul>
+                                    <li><a target="_blank" class="tweet" href="http://twitter.com/share?url=#url"><i class="ion-social-twitter"></i> Tweet</a></li>
+                                    <li><a target="_blank" class="share" href="https://www.facebook.com/sharer/sharer.php?u=#url"><i class="ion-social-facebook"></i> Share</a></li>
+                                    <li><a target="_blank" class="pinterest" href="http://pinterest.com/pin/create/button/?url=#url"><i class="ion-social-pinterest"></i> Pinterest</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="description-review-area pt-25 pb-70">
+            <div class="container">
+                <div class="description-review-wrapper">
+                    <div class="description-review-topbar nav text-center">
+                        <a class="active" data-toggle="tab" href="#des-details1">Description</a>
+                        <a data-toggle="tab" href="#des-details2">Materials</a>
+                        <a data-toggle="tab" href="#des-details3">Review</a>
+                    </div>
+                    <div class="tab-content description-review-bottom">
+                        <div id="des-details1" class="tab-pane active">
+                            <div class="product-description-wrapper">
+                                <p>{{ data.p_bio }}</p>
+                                <ul>
+                                    <li>-  {{ data.p_feature_1 }}</li>
+                                    <li>-  {{ data.p_feature_2 }}</li>
+
+                                    {% if data.p_feature_3 != "" %}
+                                        <li>-  {{ data.p_feature_3 }}</li>
+                                    {% endif %}
+
+                                    {% if data.p_feature_4 != "" %}
+                                        <li>-  {{ data.p_feature_4 }}</li>
+                                    {% endif %}
+
+                                    {% if data.p_feature_5 != "" %}
+                                        <li>-  {{ data.p_feature_5 }}</li>
+                                    {% endif %}
+
+                                    {% if data.p_feature_6 != "" %}
+                                        <li>-  {{ data.p_feature_6 }}</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="des-details2" class="tab-pane">
+
+                            <div class="in-stock">
+                                {% if data.p_pdf != "" %}
+                                    <p><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;PDF: <span><a target="_blank" style="color:#047AFE" href="{{MEDIA_URL}}{{ data.p_pdf.url }}">Click Here ...</a></span></p>
+                                {% endif %}
+
+                                {% if data.p_ppt != "" %}
+                                    <p><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;PPT: <span><a target="_blank" style="color:#047AFE" href="{{MEDIA_URL}}{{ data.p_ppt.url }}">Click Here ...</a></span></p>
+                                {% endif %}
+
+                                {% if data.p_blog_link != None %}
+                                    <p><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Blog: <span><a target="_blank" style="color:#047AFE" href="{{ data.p_blog_link }}">Click Here ...</a></span></p>
+                                {% endif %}
+
+                                {% if data.p_youtube_link != "" %}
+                                    <p><i class="fa fa-youtube-play" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Youtube: <span><a target="_blank" style="color:#047AFE" href="{{ data.p_youtube_link }}">Click Here ...</a></span></p>
+                                {% endif %}
+
+                                {% if data.p_software_link != "" %}
+                                    <p><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Software: <span><a target="_blank" style="color:#047AFE" href="{{ data.p_software_link }}">Click Here ...</a></span></p>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                        <div id="des-details3" class="tab-pane">
+                            <div class="rattings-wrapper">
+                                <div class="row">
+                                {% for j in review_data %}
+                                    <div class="col-md-4" style="border-right: 0.5px dashed lightgray">
+                                        <div class="sin-rattings">
+                                            <div class="star-author-all">
+                                                <div class="ratting-auther f-left">
+                                                    <h3>{{ j.user_name }}</h3>
+                                                </div>
+                                                <div class="ratting-author f-right">
+                                                    <span>{{ j.submited_on}}</span>
+                                                </div>
+                                            </div>
+                                            <p>{{ j.message }}</p>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            <div class="ratting-form-wrapper">
+                                <h3><b>Add your Comments :</b></h3>
+                                <div class="ratting-form">
+                                    <form action="{% url 'User:Product_Review' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="rating-form-style mb-20">
+                                                    <input type="hidden" value={{data.id}} name="product_id">
+                                                    <input type="hidden" value="{{ data.p_name }}" name="product_name">
+                                                    <label>Username</label>
+                                                    <input type="text" value="{{ request.user.username }}"readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="rating-form-style mb-20">
+                                                    <label>Email</label>
+                                                    <input type="email" value="{{ request.user.email }}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="rating-form-style mb-20">
+                                                    {{ review_form.message | as_crispy_field }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="submit" value="SUBMIT" class="btn btn-primary" style="width:100%; border-radius:5px">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="reset" value="RESET" class="btn btn-danger" style="width:100%; border-radius:5px">
+                                            </div>
+                                            <div class="col-md-3">
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+{% endblock %}

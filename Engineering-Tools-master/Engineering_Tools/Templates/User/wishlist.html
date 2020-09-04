@@ -1,0 +1,78 @@
+{% extends 'User/header_footer.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block 'content'  %}
+
+
+
+<div class="breadcrumb-area gray-bg-7">
+            <div class="container">
+                <div class="breadcrumb-content">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Wishlist </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+         <!-- shopping-cart-area start -->
+        <div class="cart-main-area pt-60 pb-25">
+            <div class="container">
+                <h3 class="page-title">Your WishList items</h3>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        {% if not data %}
+                            <center>
+                                <p style="font-size:20px; font-style:italic;">You Don't Have Any Product In Your WishList...</p>
+                                <p style="font-size:16px; font-style:italic;">Check Your Cart?. Please, <span><a style="color:blue;" href="{% url 'User:Cart' %}">Click Here</a></span> ...</p>
+                                <p style="font-size:16px; font-style:italic;">Want To See All Product?. Please, <span><a style="color:blue;" href="#">Click Here</a></span> ...</p>
+                                <p style="font-size:15px; font-style:italic;">Want To See All Companies?. Please, <span><a style="color:blue;" href="{% url 'User:All_Company' %}">Click Here</a></span> ...</p>
+                            </center>
+                        {% else %}
+                        <div class="table-content table-responsive wishlist">
+                                <table class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Add On</th>
+                                            <th>Add To Cart</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in data %}
+                                            <tr>
+                                                <td>{{ i.product_name }}</td>
+                                                <td>{{ i.price }}</td>
+                                                <td>{{ i.added_in_wishlist }}</td>
+                                                <td>
+                                                    <form method="POST" action="{% url 'Cart:WishList_To_Cart' %}">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="{{ i.id }}" name="ID">
+                                                        <button class="btn btn-primary" style="border-radius:5px">
+                                                            Add To Cart
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form method="POST" action="{% url 'Cart:Remove_From_Wish_LIST' %}">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="{{ i.id }}" name="ID" >
+                                                        <button class="btn btn-danger" style="border-radius:5px">
+                                                            Remove
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Feb 2020 10:57:56 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>Doccure - Login</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'Admin/img/favicon.png' %}">
+
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'Admin/css/bootstrap.min.css' %}">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="{% static 'Admin/css/font-awesome.min.css' %}">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="{% static 'Admin/css/style.css' %}">
+		
+		<!--[if lt IE 9]>
+			<script src="{% static 'Admin/js/html5shiv.min.js' %}"></script>
+			<script src="{% static 'Admin/js/respond.min.js' %}"></script>
+		<![endif]-->
+    </head>
+    <body>
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper login-body">
+            <div class="login-wrapper">
+            	<div class="container">
+                	<div class="loginbox">
+                    	<div class="login-left">
+							<img class="img-fluid" src="{% static 'Admin/img/logo-white.png' %}" alt="Logo">
+                        </div>
+                        <div class="login-right">
+							<div class="login-right-wrap">
+								<h1>Log-In</h1>
+								<p class="account-subtitle">Welcome To PGMS</p>
+								
+								<!-- Form -->
+								 <form  style="margin-top:4%"  method="post" > {% csrf_token %}
+									<div class="form-group">
+                                        <label>Username: </label>
+                                        <input type="text" name="username" class="form-control">
+									</div>
+									<div class="form-group">
+                                        <label>Password:</label>
+                                        <input type="password" name="password" class="form-control">
+									</div>
+									<div class="form-group">
+										   	{% if redirect_field_value %}
+                         						<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+											{% endif %}
+
+										<button class="btn btn-primary btn-block" type="submit">Login</button>
+									</div>
+								</form>
+								<!-- /Form -->
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+        <script src="{% static 'Admin/js/jquery-3.2.1.min.js' %}"></script>
+		
+		<!-- Bootstrap Core JS -->
+        <script src="{% static 'Admin/js/popper.min.js' %}"></script>
+        <script src="{% static 'Admin/js/bootstrap.min.js' %}"></script>
+		
+		<!-- Custom JS -->
+		<script src="{% static 'Admin/js/script.js' %}"></script>
+		
+    </body>
+
+</html>
